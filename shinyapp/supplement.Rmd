@@ -1,0 +1,58 @@
+## before
+
+```{r render_plot1}
+render_plot1 <-  plotly::renderPlotly
+```
+
+
+```{r output_plot1}
+output_plot1 <-{
+  plotly(...)
+}
+```
+
+
+```{r render_plot2}
+render_plot2 <- shiny::renderPlot
+```
+
+```{r output_plot2}
+output_plot2 <- {
+  ggplot(...)}
+)
+```
+
+
+```{r render_final}
+render_final <- reactive
+```
+
+
+```{r output_final}
+output_final <- {
+  if(...){
+    output_plot1
+  } else {
+    output_plot2
+  }
+})
+```
+
+## after
+
+```{r}
+output$plot1 <- plotly::renderPlotly(...)
+output$plot2 <- shiny::renderPlot(...)
+```
+
+
+```{r output_plot2}
+output$final <- reactive({
+  if(...){
+    output$plot1 
+  } else {
+    output$plot2
+  }
+})
+```
+
